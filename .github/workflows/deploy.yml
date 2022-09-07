@@ -4,13 +4,13 @@ on:
     #     - cron:  '* * * * *' 
     push:
         branches:
-            - master
+            - main
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
         steps:
             - name: 1. Checkout
-              uses: actions/checkout@master
+              uses: actions/checkout@main
 
             - name: 2. setup nodejs...
 
