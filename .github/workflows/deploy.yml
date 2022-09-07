@@ -2,9 +2,9 @@ name: run
 on:
     schedule: # 定时任务
         - cron:  '*/2 * * * *' 
-    push:
-        branches:
-            - master
+    # push:
+    #     branches:
+    #         - master
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
