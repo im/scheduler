@@ -1,7 +1,7 @@
 name: run
 on:
-    schedule: # 定时任务
-        - cron:  '* * * * *' 
+    schedule:
+      - cron: '* * * * *'
     # push:
     #     branches:
     #         - main
