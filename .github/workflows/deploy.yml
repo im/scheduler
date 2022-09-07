@@ -1,10 +1,10 @@
 name: run
 on:
-    schedule: # 定时任务
-        - cron:  '* * * * *' 
-    # push:
-    #     branches:
-    #         - master
+    # schedule: # 定时任务
+    #     - cron:  '* * * * *' 
+    push:
+        branches:
+            - master
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
