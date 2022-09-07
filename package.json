@@ -1,0 +1,14 @@
+{
+    "name": "scheduler",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:im/scheduler.git",
+    "author": "tangxiaomi <81195314@qq.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "fs-extra": "^10.1.0"
+    },
+    "scripts": {
+        "build": "node app.js"
+    }
+}
