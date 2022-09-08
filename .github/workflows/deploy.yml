@@ -5,6 +5,9 @@ on:
     push:
         branches:
             - main
+env:
+  USERNAME: ${{secrets.USERNAME}}
+  PASSWORD: ${{secrets.PASSWORD}}
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
