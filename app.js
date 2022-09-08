@@ -7,8 +7,8 @@ const fs = require('fs-extra')
 fs.removeSync(OUTPUT_PATH)
 
 
-console.log('process.env.USERNAME', process.env.USERNAME)
-console.log('process.env.PASSWORD', process.env.PASSWORD)
+console.log('process.env.USERNAME', process.env.secrets.USERNAME)
+console.log('process.env.PASSWORD', process.env.secrets.PASSWORD)
 
 
 fs.outputFileSync(OUTPUT_PATH, getCurrentTime())
