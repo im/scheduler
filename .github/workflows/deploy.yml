@@ -1,40 +1,40 @@
-name: run
-on:
-    schedule:
-      - cron: '*/15 * * * *'
-    push:
-        branches:
-            - main
-env:
-  USERNAME: ${{secrets.USERNAME}}
-  PASSWORD: ${{secrets.PASSWORD}}
-jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: 1. Checkout
-              uses: actions/checkout@main
+# name: run
+# on:
+#     schedule:
+#       - cron: '*/15 * * * *'
+#     push:
+#         branches:
+#             - main
+# env:
+#   USERNAME: ${{secrets.USERNAME}}
+#   PASSWORD: ${{secrets.PASSWORD}}
+# jobs:
+#     build-and-deploy:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: 1. Checkout
+#               uses: actions/checkout@main
 
-            - name: 2. setup nodejs...
+#             - name: 2. setup nodejs...
 
-              uses: actions/setup-node@v2
-              with:
-                node-version: '16'
+#               uses: actions/setup-node@v2
+#               with:
+#                 node-version: '16'
 
-            - name: 3. install yarn..
-              run: |
-                  npm install yarn -g
-                  yarn
+#             - name: 3. install yarn..
+#               run: |
+#                   npm install yarn -g
+#                   yarn
 
-            - name: 4. build 
-              run: |
-                  yarn run build
-                  ls
-                  cat dist/test.txt
+#             - name: 4. build 
+#               run: |
+#                   yarn run build
+#                   ls
+#                   cat dist/test.txt
 
-            - name: 5. deploy github pages
-              uses: JamesIves/github-pages-deploy-action@3.7.1
-              with:
-                  ACCESS_TOKEN: ${{ secrets.PAGES_TOKEN }}
-                  BRANCH: gh-pages
-                  FOLDER: dist
+#             - name: 5. deploy github pages
+#               uses: JamesIves/github-pages-deploy-action@3.7.1
+#               with:
+#                   ACCESS_TOKEN: ${{ secrets.PAGES_TOKEN }}
+#                   BRANCH: gh-pages
+#                   FOLDER: dist
