@@ -1,17 +1,27 @@
-
-
-const OUTPUT_PATH = 'dist/test.txt'
-
+const login = require('./login')
+const request = require('request')
 const fs = require('fs-extra')
-
-fs.removeSync(OUTPUT_PATH)
-
-
-console.log('process.env.USERNAME', process.env.USERNAME)
-console.log('process.env.PASSWORD', process.env.PASSWORD)
+const distDir = 'dist/1.json'
 
 
-fs.outputFileSync(OUTPUT_PATH, getCurrentTime())
+const getWords = async (page, cookie) => {
+    return new Promise((reslove, reject) => {
+        request(
+            {
+                url: `https://langeasy.com.cn/getUserNewWord.action?page=${page}&time=${new Date().getTime()}`,
+                method: 'get',
+                jar: cookie
+            },
+            async (error, response, body) => {
+                if (!error && response.statusCode == 200) {
+                    reslove(JSON.parse(body))
+                } else {
+                    reject(error)
+                }
+            }
+        )
+    })
+}
 
 function getCurrentTime() {
     var date = new Date();//当前时间
@@ -35,3 +45,40 @@ function repair(i) {
         return i;
     }
 }
+
+
+const run = async () => {
+
+    const cookie = await login.cookie()
+
+    const data = await getWords(1, cookie)
+    data.curTime = getCurrentTime()
+
+    fs.outputFileSync(distDir, JSON.stringify(data))
+
+
+
+
+}
+
+
+
+run()
+
+
+
+
+
+// const OUTPUT_PATH = 'dist/test.txt'
+
+// const fs = require('fs-extra')
+
+// fs.removeSync(OUTPUT_PATH)
+
+
+// console.log('process.env.USERNAME', process.env.USERNAME)
+// console.log('process.env.PASSWORD', process.env.PASSWORD)
+
+
+// fs.outputFileSync(OUTPUT_PATH, getCurrentTime())
+
